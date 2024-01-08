@@ -1,4 +1,4 @@
-## Dockerfile-prod
+## Dockerfile
 ##########
 FROM openjdk:17-jdk
 #EXPOSE 8080

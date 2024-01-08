@@ -92,11 +92,8 @@ jobs:
           envs: GITHUB_SHA
           script: |
               echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
-              CONTAINER_IDS=$(docker ps -qa)
-              if [ -n "$CONTAINER_IDS" ]; then
-                sudo docker rm -f $CONTAINER_IDS
-              fi
-              sudo docker pull ${{ secrets.DOCKER_USER }}/${{ secrets.DOCKER_REPO }}
+              sudo docker rm -f $(docker ps -qa)
+              sudo docker pull ${{ secrets.DOCKER_REPO }}
               docker-compose up -d
               docker image prune -f
 

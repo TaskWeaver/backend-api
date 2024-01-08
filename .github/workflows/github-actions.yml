@@ -96,7 +96,7 @@ jobs:
               if [ -n "$CONTAINER_IDS" ]; then
                 sudo docker rm -f $CONTAINER_IDS
               fi
-              sudo docker pull ${{ secrets.DOCKER_REPO }}
+              sudo docker pull ${{ secrets.DOCKER_USER }}/${{ secrets.DOCKER_REPO }}
               docker-compose up -d
               docker image prune -f
 

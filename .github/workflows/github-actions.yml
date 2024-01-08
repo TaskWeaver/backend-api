@@ -33,20 +33,20 @@ jobs:
         path: |
           ~/.gradle/caches
           ~/.gradle/wrapper
-        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.yml') }}
         restore-keys: |
           ${{ runner.os }}-gradle-
 
-    ## create application-prod.properties
-    - name: make application-prod.properties
+    ## create application-prod.yml
+    - name: make application-prod.yml
       if: contains(github.ref, 'main')
       run: |
           cd ./src/main
           mkdir resources
           cd ./resources
           
-          touch ./application.properties
-          echo "${{ secrets.PROPERTIES_PROD }}" >> ./application.properties
+          touch ./application.yml
+          echo "${{ secrets.YML_PROD }}" >> ./application.yml
       shell: bash
 
     ## gradle build

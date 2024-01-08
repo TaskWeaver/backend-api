@@ -48,7 +48,7 @@ jobs:
           touch ./application.yml
           echo "${{ secrets.YML_PROD }}" >> ./application.yml
       shell: bash
-      
+
     - name: Set up permissions for Gradle
       run: chmod +x ./gradlew
 
@@ -60,7 +60,7 @@ jobs:
     ## copy jar file
     - name: Copy jar file
       run: cp build/libs/*-0.0.1-SNAPSHOT.jar .
-      
+
     - name: List directory
       run: ls -R
       
@@ -91,11 +91,11 @@ jobs:
           key: ${{ secrets.PRIVATE_KEY }}
           envs: GITHUB_SHA
           script: |
-            sudo docker stop $(sudo docker ps -a -q)
-            sudo docker rm $(sudo docker ps -a -q)
-            sudo docker image rm ${{ secrets.DOCKER_REPO }}
+            echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+            sudo docker rm -f $(docker ps -qa)
             sudo docker pull ${{ secrets.DOCKER_REPO }}
-            sudo docker run -d -p 8080:8080 ${{ secrets.DOCKER_REPO }}
+            docker-compose up -d
+            docker image prune -f
 
   ## time
   current-time:

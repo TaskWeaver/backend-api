@@ -48,6 +48,9 @@ jobs:
           touch ./application.yml
           echo "${{ secrets.YML_PROD }}" >> ./application.yml
       shell: bash
+      
+    - name: Set up permissions for Gradle
+      run: chmod +x ./gradlew
 
     ## gradle build
     - name: Build with Gradle

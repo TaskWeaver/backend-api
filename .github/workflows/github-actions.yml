@@ -74,11 +74,11 @@ jobs:
 
     - name: Docker build
       run: |
-        docker build -t ${{ secrets.DOCKER_USERNAME }} / ${{ secrets.DOCKER_REPO }} .
+        docker build -t ${{ secrets.DOCKER_REPO }} .
 
     - name: Docker push
       run: |
-        docker push ${{ secrets.DOCKER_USERNAME }} / ${{ secrets.DOCKER_REPO }}
+        docker push ${{ secrets.DOCKER_REPO }}
 
     ## deploy to production
     - name: Deploy to prod

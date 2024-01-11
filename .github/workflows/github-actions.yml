@@ -45,8 +45,8 @@ jobs:
           mkdir resources
           cd ./resources
           
-          touch ./application.yml
-          echo "${{ secrets.YML_PROD }}" >> ./application.yml
+          touch ./application-prod.yml
+          echo "${{ secrets.YML_PROD }}" >> ./application-prod.yml
       shell: bash
 
     - name: Set up permissions for Gradle

@@ -38,12 +38,12 @@ jobs:
           ${{ runner.os }}-gradle-
 
     ## create application-prod.yml
-    - name: make application-prod.yml
+    - name: make application.yml
       if: contains(github.ref, 'main')
       run: |
           cd ./src/main/resources
-          touch ./application-prod.yml
-          echo "${{ secrets.YML_PROD }}" > ./application-prod.yml
+          touch ./application.yml
+          echo "${{ secrets.YML_PROD }}" > ./application.yml
       shell: bash
 
     - name: Set up permissions for Gradle
